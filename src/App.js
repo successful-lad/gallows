@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, Router } from 'react-router';
+import routes from "./consts/routes";
+import { MainScreen, GameScreen } from '../src/screens'
+import { history } from "./configureStore";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <Router history={history}>
+        <Switch>
+            <Route path={routes.getGameScreen()} component={GameScreen} />
+            <Route path={routes.getMain()} component={MainScreen} />
+        </Switch>
+    </Router>
+);
 
 export default App;
