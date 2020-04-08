@@ -1,9 +1,12 @@
-export const stateGallows = (store = {} , action) =>{
+export const stateGallows = (store = {
+    word: '', result: false
+} , action) => {
+
     switch (action.type) {
-        case 'INCREMENT':
-            return store +1;
-        case 'DECREMENT':
-            return store -1;
+        case 'ADDWORD':
+            return {...store, word: action.word};
+        case 'SETRESULT':
+            return {...store, result: action.result};
         default:
             return store;
     }

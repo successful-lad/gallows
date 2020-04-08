@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { useGallowsState } from '../../hooks';
 import { BasicField } from '../../components/fields';
 import { LetterButton } from  '../../components/buttons';
 import { history } from "../../configureStore";
@@ -16,26 +17,34 @@ import mistake6 from '../../assets/img/mistake6.png';
 import './style.scss';
 
 const GameScreen = () => {
-    const [currentValue, setCurrentValue] = useState();
+    const { state, setGameResult } = useGallowsState();
+
+    const [currentValue, setCurrentValue] = useState('');
     const [mistakeAmount, setMistakeAmount] = useState(0);
-    const [hiddenWordStr, setHiddenWordStr] = useState('hidden');
+    // const [hiddenWordStr, setHiddenWordStr] = useState('hidden');
     const [usesLetterArr, setUsesLetterArr] = useState([]);
-    const [guessedWord, setGuessedWord] = useState(Array(hiddenWordStr.length).fill(''));
+    const [guessedWord, setGuessedWord] = useState(Array(state.word.length).fill(''));
 
     useEffect(()=>{
-        if (mistakeAmount === 6 || guessedWord.every(letter => letter)) {
-            history.push(routes.getMain())
+        if ( guessedWord.every(letter => letter)) {
+            setGameResult(true);
+            history.push(routes.getEndScreen());
         }
-    }, [guessedWord, mistakeAmount])
+        if (mistakeAmount === 6) {
+            setGameResult(false);
+            history.push(routes.getEndScreen());
+        }
+
+    }, [guessedWord, mistakeAmount, setGameResult])
 
     const handleSubmit = (event) => {
         let allEntry = [];
 
-        if (currentValue && hiddenWordStr.indexOf(currentValue) !== -1) {
+        if (currentValue && state.word.indexOf(currentValue) !== -1) {
             let pos = 0;
 
             while (true) {
-                let foundPos = hiddenWordStr.indexOf(currentValue, pos);
+                let foundPos = state.word.indexOf(currentValue, pos);
                 if (foundPos === -1){ break}
 
                 pos = foundPos + 1;
@@ -53,7 +62,7 @@ const GameScreen = () => {
         if (allEntry.length !== 0) {
             let wordArr = [...guessedWord];
             allEntry.forEach(num => {
-                wordArr[num] = hiddenWordStr[num];
+                wordArr[num] = state.word[num];
             });
 
             setGuessedWord(wordArr);
@@ -94,6 +103,7 @@ const GameScreen = () => {
             default:
                 currentImage = mistake0;
         }
+
         return currentImage;
     }, [ mistakeAmount ]);
 
@@ -130,7 +140,12 @@ const GameScreen = () => {
                         </div>
                     </div>
                     <div className="gameScreen__gameWrapper__form__inputRow">
-                        <BasicField handleChange={handleChange} inpValue={currentValue}/>
+                        <BasicField
+                            handleChange={handleChange}
+                            inpValue={currentValue}
+                            maxLength={1}
+                            placeholder='Введите букву'
+                        />
                         <input type="submit" value='Проверить букву'/>
                     </div>
                 </form>

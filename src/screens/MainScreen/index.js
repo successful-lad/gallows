@@ -17,7 +17,7 @@ const MainScreen = () => {
             <div className='mainScreen__menu'>
                 <Link
                     className='mainScreen__menu__item'
-                    to={routes.getGameScreen()}
+                    to={routes.getConfigureScreen()}
                 >
                     Играть
                 </Link>
