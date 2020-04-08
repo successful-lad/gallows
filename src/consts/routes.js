@@ -1,6 +1,9 @@
 const defaultRoute = '/';
+const configureRoute = `${defaultRoute}configure`;
 
 export default {
     getMain: () => defaultRoute,
-    getGameScreen: ()=> `${defaultRoute}game`,
+    getGameScreen: ()=> `${configureRoute}/game`,
+    getConfigureScreen: () => configureRoute,
+    getEndScreen: () => `${configureRoute}/game/end`
 }

@@ -6,11 +6,11 @@ import './style.scss';
 
 const MainScreen = () => {
     const [visBlock, setVisBlock] = useState(false);
-    console.log(visBlock);
+
     return(
         <div className='mainScreen'>
             {
-                /*
+                /*todo
                 кста тут картинку вставить можно с висилицей для того что бы пространство занять как-то
                  */
             }

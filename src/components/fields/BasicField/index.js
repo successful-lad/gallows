@@ -11,6 +11,7 @@ const BasicField = ({ handleChange, inpValue }) => {
                    onChange={handleChange}
                    className='basicField__field'
                    maxLength={1}
+                   placeholder='Введите букву'
             />
         </div>
     )
