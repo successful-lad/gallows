@@ -18,8 +18,8 @@ const MainScreen = () => {
                  */
             }
             <div className='mainScreen__menu'>
-                {state.respawn && (
-                    <div className='mainScreen__menu__ hiddenBLock'>
+                {state.respawn  && (
+                    <div className='mainScreen__menu__hiddenBlock'>
                         гкхм... Добрый день, надеюсь у вас получиться отгадать слово, а то предыдущий
                         чуть не устроил геноцид... всмысле был не такой достойным как вы, конечно же.
                     </div>

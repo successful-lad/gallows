@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useGallowsState } from '../../hooks';
 import { BasicField } from '../../components/fields';
-import { LetterButton } from  '../../components/buttons';
+import { LetterButton, BasicButton } from  '../../components/buttons';
 import { history } from "../../configureStore";
 import routes from "../../consts/routes";
 
@@ -21,7 +21,6 @@ const GameScreen = () => {
 
     const [currentValue, setCurrentValue] = useState('');
     const [mistakeAmount, setMistakeAmount] = useState(0);
-    // const [hiddenWordStr, setHiddenWordStr] = useState('hidden');
     const [usesLetterArr, setUsesLetterArr] = useState([]);
     const [guessedWord, setGuessedWord] = useState(Array(state.word.length).fill(''));
 
@@ -54,7 +53,7 @@ const GameScreen = () => {
             if ( currentValue && !usesLetterArr.includes(currentValue)) {
                 setUsesLetterArr([...usesLetterArr, currentValue])
             }
-        } else {
+        } else if(currentValue){
             setUsesLetterArr([...usesLetterArr, currentValue])
             setMistakeAmount( value => value + 1);
         }
@@ -146,7 +145,7 @@ const GameScreen = () => {
                             maxLength={1}
                             placeholder='Введите букву'
                         />
-                        <input type="submit" value='Проверить букву'/>
+                        <BasicButton text='Проверить букву'/>
                     </div>
                 </form>
             </div>

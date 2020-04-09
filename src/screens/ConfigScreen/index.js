@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useGallowsState } from '../../hooks';
 import { BasicField } from '../../components/fields';
+import { BasicButton } from '../../components/buttons';
 import { history } from "../../configureStore";
 import routes from "../../consts/routes";
 
@@ -46,13 +47,21 @@ const ConfigScreen = () => {
                             handleChange={handleChange}
                             placeholder='Загадайте слово'
                         />
-                        <button type="submit" disabled={ newUserWord === ''}> Загадать слово</button>
+
+                        <BasicButton
+                            isDisable={newUserWord === ''}
+                            text='Загадать слово'
+                        />
                     </div>
                     <div className='configureScreen__wrapper__title'>
                         Так же можете  воспользоваться нашим генератором слов
                     </div>
                     <div className='configureScreen__wrapper__randomWord'>
-                        <button onClick={setRandomWord}> Отгадать рандомное слово</button>
+                        <BasicButton
+                            text='Отгадать рандомное слово'
+                            onClick={setRandomWord}
+                            wrapperStyle={{ height: 30 }}
+                        />
                     </div>
                 </form>
         </div>
