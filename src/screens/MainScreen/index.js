@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useGallowsState } from '../../hooks';
 import routes from "../../consts/routes";
 
 import './style.scss';
 
 const MainScreen = () => {
     const [visBlock, setVisBlock] = useState(false);
+
+    const { state } = useGallowsState();
 
     return(
         <div className='mainScreen'>
@@ -15,6 +18,12 @@ const MainScreen = () => {
                  */
             }
             <div className='mainScreen__menu'>
+                {state.respawn && (
+                    <div className='mainScreen__menu__ hiddenBLock'>
+                        гкхм... Добрый день, надеюсь у вас получиться отгадать слово, а то предыдущий
+                        чуть не устроил геноцид... всмысле был не такой достойным как вы, конечно же.
+                    </div>
+                )}
                 <Link
                     className='mainScreen__menu__item'
                     to={routes.getConfigureScreen()}

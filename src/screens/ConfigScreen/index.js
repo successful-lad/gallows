@@ -7,8 +7,9 @@ import routes from "../../consts/routes";
 import './style.scss';
 
 const randomArrWords = [
-    'Hello', 'fish', 'MyNameIllya', 'gallows',
-    'name', 'agiotage', 'Love', 'Hush'
+    'hello', 'desire', 'mynameillya', 'gallows',
+    'name', 'agiotage', 'love', 'hush',
+    'desire', 'reconciliation', 'rebellion',
 ];
 
 const ConfigScreen = () => {
@@ -28,10 +29,11 @@ const ConfigScreen = () => {
     };
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         addNewWord(newUserWord);
         history.push(routes.getGameScreen());
     };
+
     return (
         <div className='configureScreen'>
                 <form onSubmit={handleSubmit} className='configureScreen__wrapper'>
@@ -44,7 +46,7 @@ const ConfigScreen = () => {
                             handleChange={handleChange}
                             placeholder='Загадайте слово'
                         />
-                        <input type="submit" value='Загадать слово'/>
+                        <button type="submit" disabled={ newUserWord === ''}> Загадать слово</button>
                     </div>
                     <div className='configureScreen__wrapper__title'>
                         Так же можете  воспользоваться нашим генератором слов

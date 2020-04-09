@@ -1,5 +1,5 @@
 export const stateGallows = (store = {
-    word: '', result: false
+    word: '', result: false, respawn: false
 } , action) => {
 
     switch (action.type) {
@@ -7,6 +7,8 @@ export const stateGallows = (store = {
             return {...store, word: action.word};
         case 'SETRESULT':
             return {...store, result: action.result};
+        case 'SETRESPAWN':
+            return {...store, respawn: true};
         default:
             return store;
     }

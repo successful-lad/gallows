@@ -9,37 +9,38 @@ import deadMan from '../../assets/img/deadMan.png';
 import './style.scss';
 
 const EndScreen = () => {
-    const { state } = useGallowsState();
-    /**todo
-     * принять пропсы в меню а так же удалить стили которые я не использую,
-     * а так же сделать общие стили для обоих вариантов развития событий
-     */
+    const { state, setNewRespawn } = useGallowsState();
+
     const rollBack = () => {
-          history.push(routes.getMain(), {respawn: true})
+        setNewRespawn();
+        history.push(routes.getMain())
     };
+
     return (
         <div className='endScreen'>
             <div className='endScreen__wrapper'>
-                {true ? (
-                <div className='endScreen__wrapper__lose'>
+                {state.result ? (
+                <div className='endScreen__wrapper__container'>
                     <img
                         src={liveMan}
                         alt="liveMan"
-                        className='endScreen__wrapper__lose__img'
+                        className='endScreen__wrapper__container__img'
                     />
-                    <span className='endScreen__wrapper__lose__text'>
-                        Мое поздравление)) Вы эрудит)
+                    <span className='endScreen__wrapper__container__text'>
+                        Фух, я выжил, так то это нормально, ведь... обратная перспектива была
+                        не особо желательной для меня, ты то молодец, но знаешь, тут многие слова
+                        отгадывали, и что-то , мягко говоря, не у всех получалось, а ты молодец, спасибо)
                     </span>
                 </div>
                 ) :
                     (
-                        <div className='endScreen__wrapper__lose'>
+                        <div className='endScreen__wrapper__container'>
                             <img
                                 src={deadMan}
                                 alt="dead man"
-                                className='endScreen__wrapper__lose__img'
+                                className='endScreen__wrapper__container__img'
                             />
-                            <div className='endScreen__wrapper__lose__text'>
+                            <div className='endScreen__wrapper__container__text'>
                                 <span>
                                     Эм... Ну... Вы сами видите что произошло.
                                 Он прожил красочную жизнь, много букв повидал, и много что успел.
@@ -48,7 +49,7 @@ const EndScreen = () => {
                                 Хотя... у меня тут завалялась машина времени, и мы сможем спасти его, рискнешь еще раз ?
                                 </span>
                                 <button
-                                    className='endScreen__wrapper__lose__respawn'
+                                    className='endScreen__wrapper__container__respawn'
                                     onClick={rollBack}
                                 >
                                     Откатить время назад

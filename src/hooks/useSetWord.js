@@ -7,15 +7,15 @@ const useGallowsState = () => {
 
     const dispatch = useDispatch();
 
-    // const decrement = () => dispatch({ type: 'DECREMENT' });
-    // const increment = () => dispatch({ type: 'INCREMENT' });
     const addNewWord = word => dispatch({type: 'ADDWORD', word: word });
-    const setGameResult = result => dispatch({type: 'SETRESULT', result: result})
+    const setGameResult = result => dispatch({type: 'SETRESULT', result: result});
+    const setNewRespawn = () => dispatch({type: 'SETRESPAWN', respawn: true})
     return (
         {
             addNewWord,
-            state,
             setGameResult,
+            setNewRespawn,
+            state,
         }
 
     )
