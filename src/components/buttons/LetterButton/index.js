@@ -8,7 +8,10 @@ const LetterButton = ({letter}) => {
 
     return (
         <div className='letterButton'>
-            <button className='letterButton__buttonWrapper'>{letter ? letter : <img src={lock} alt="asasd"/>}</button>
+            <button
+                className='letterButton__buttonWrapper'
+                disabled={true}
+            >{letter ? letter : <img src={lock} alt="asasd"/>}</button>
         </div>
     )
 };
